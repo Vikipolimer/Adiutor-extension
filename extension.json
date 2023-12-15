@@ -24,9 +24,7 @@
     },
     "SpecialPages": {
         "AdiutorSettings": {
-            "name": "AdiutorSettings",
-            "class": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings",
-            "descriptionmsg": "adiutor-settings"
+            "class": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings"
         }
     },
     "Hooks": {
