@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Vikipolimer"
+        ]
+    },
     "adiutor-title": "Adiutor",
     "adiutor-desc": "Adiutor is a tool that helps you to perform various tasks on Wikipedia.",
     "adiutor-create": "Create",
@@ -148,7 +153,7 @@
     "adiutor-new-section-description": "When this checkbox is enabled, a new section will be added to the notice board page.",
     "adiutor-new-section-title": "New section title:",
     "adiutor-use-exist-section": "Use exist section to append or prepend the content pattern.",
-    "adiutor-use-exist-section-description": "When this checkbox is enabled, a new section will be added to the notice board page.",
+    "adiutor-use-exist-section-description": "When this checkbox is enabled, content will be added under the section specified in the section ID field.",
     "adiutor-section-id": "Section ID:",
     "adiutor-section-id-description": "The content pattern will be prepended or appended in the section belonging to the ID specified here.",
     "adiutor-no-section-description": "If you do not create a new section or use an existing section, the content will be prepended or appended on the page.",
