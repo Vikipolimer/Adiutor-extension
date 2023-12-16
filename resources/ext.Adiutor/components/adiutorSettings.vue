@@ -31,23 +31,23 @@ module.exports = defineComponent({
         return {
             tabsData: [{
                 name: 'csd',
-                label: 'Create Speedy Deletion',
+                label: mw.msg('adiutor-create-speedy-deletion'),
                 component: createSpeedyDeletionOptions
             }, {
                 name: 'rpp',
-                label: 'Request Page Protection',
+                label: mw.msg('adiutor-request-page-protection'),
                 component: requestPageProtectionOptions
             }, {
                 name: 'rpm',
-                label: 'Request Page Move',
+                label: mw.msg('adiutor-request-page-move'),
                 component: requestPageMoveOptions
             }, {
                 name: 'dpr',
-                label: 'Deletion Propose',
+                label: mw.msg('adiutor-proposed-deletion'),
                 component: deletionProposeOptions
             }, {
                 name: 'tag',
-                label: 'Article Tagging',
+                label: mw.msg('adiutor-article-tagging'),
                 component: articleTaggingOptions
             }],
             currentTab: 'csd'

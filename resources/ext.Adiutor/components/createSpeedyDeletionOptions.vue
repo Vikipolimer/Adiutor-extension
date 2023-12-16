@@ -181,15 +181,15 @@ module.exports = defineComponent({
         const postfixReasonUsage = ref(csdConfiguration.postfixReasonUsage);
         const postfixReasonUsageRadios = [
             {
-                label: 'Use reason value',
-                description: 'When activated, only the reason value is inserted. It is mandatory to use the $3 parameter in the request template.',
+                label: mw.message('adiutor-csd-use-reason-value').text(),
+                description: mw.message('adiutor-csd-use-reason-value-description').text(),
                 value: 'value',
                 parameter: '$3',
                 output: 'A1}}',
             },
             {
-                label: 'Use reason data',
-                description: 'When activated, only the reason data is inserted. It is mandatory to use the $2 parameter in the request template.',
+                label: mw.message('adiutor-csd-use-reason-data').text(),
+                description: mw.message('adiutor-csd-use-reason-data-description').text(),
                 value: 'data',
                 parameter: '$2',
                 output: '[[WP:CSD#A1|A1]]: Short article without enough context to identify the subject}}',
@@ -198,15 +198,16 @@ module.exports = defineComponent({
         const multipleReasonSeparation = ref(csdConfiguration.multipleReasonSeparation);
         const multipleReasonSeparationRadios = [
             {
-                label: 'Use vertical bar',
-                description: 'When activated, reasons within the speedy deletion template are separated by "|".',
+                label: mw.message('adiutor-csd-use-vertical-bar').text(),
+                description: mw.message('adiutor-csd-use-vertical-bar-description').text(),
                 value: 'vertical_bar',
                 parameter: '$3',
                 output: '|A1|G1}}',
             },
             {
-                label: 'Default',
-                description: 'When activated, only the reason data is inserted. It is mandatory to use the $2 parameter in the request template.',
+                label: mw.message('adiutor-csd-default').text(),
+                description: mw.message('adiutor-csd-default-description').text(),
+                description: 'When activated, reasons within the speedy deletion template are separated by "and".',
                 value: 'default',
                 parameter: '$2',
                 output: '[[WP:CSD#A1]] and [[WP:CSD#G1]]}}',
@@ -233,7 +234,7 @@ module.exports = defineComponent({
     },
     data() {
         return {
-            saveButtonLabel: 'Save configurations',
+            saveButtonLabel: mw.message('adiutor-save-configurations').text(),
             saveButtonAction: 'progressive',
             saveButtonClass: 'save-button',
             saveButtonWeight: 'primary',
@@ -293,7 +294,7 @@ module.exports = defineComponent({
 
         async saveConfiguration() {
             // Change the button label and disable it during the save operation
-            this.saveButtonLabel = 'Saving...';
+            this.saveButtonLabel = mw.message('adiutor-configurations-saving').text();
             this.saveButtonAction = 'default';
             this.saveButtonDisabled = true;
 
@@ -345,13 +346,13 @@ module.exports = defineComponent({
                         type: 'success'
                     });
                     // Revert the button label and enable it after a delay (2 seconds)
-                    this.saveButtonLabel = 'Save configurations';
+                    this.saveButtonLabel = mw.message('adiutor-save-configurations').text();
                     this.saveButtonAction = 'progressive';
                     this.saveButtonDisabled = false;
                 } else {
                     // Log an error message if the update was not successful
                     console.error('Error updating configuration');
-                    this.saveButtonLabel = 'Try again';
+                    this.saveButtonLabel = mw.message('adiutor-try-again').text();
                     this.saveButtonAction = 'destructive';
                     this.saveButtonDisabled = false;
                 }

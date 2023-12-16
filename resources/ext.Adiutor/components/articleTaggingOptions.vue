@@ -160,7 +160,7 @@ module.exports = defineComponent({
     },
     data() {
         return {
-            saveButtonLabel: 'Save configurations',
+            saveButtonLabel: mw.message('adiutor-save-configurations').text(),
             saveButtonAction: 'progressive',
             saveButtonClass: 'save-button',
             saveButtonWeight: 'primary',
@@ -235,7 +235,7 @@ module.exports = defineComponent({
 
         async saveConfiguration() {
             // Change the button label and disable it during the save operation
-            this.saveButtonLabel = 'Saving...';
+            this.saveButtonLabel = mw.message('adiutor-configurations-saving').text();
             this.saveButtonAction = 'default';
             this.saveButtonDisabled = true;
 
@@ -279,13 +279,13 @@ module.exports = defineComponent({
                         type: 'success'
                     });
                     // Revert the button label and enable it after a delay (2 seconds)
-                    this.saveButtonLabel = 'Save configurations';
+                    this.saveButtonLabel = mw.message('adiutor-save-configurations').text();
                     this.saveButtonAction = 'progressive';
                     this.saveButtonDisabled = false;
                 } else {
                     // Log an error message if the update was not successful
                     console.error('Error updating configuration');
-                    this.saveButtonLabel = 'Try again';
+                    this.saveButtonLabel = mw.message('adiutor-configurations-saving').text();
                     this.saveButtonAction = 'destructive';
                     this.saveButtonDisabled = false;
                 }

@@ -119,12 +119,12 @@ module.exports = defineComponent({
         const textModificationDirection = ref(rpmConfiguration.textModificationDirection);
         const textModificationDirectionRadios = [
             {
-                label: 'Prepend text on the page.',
-                description: 'When this checkbox is activated, the specified content in the content pattern input will be prepended on the page.',
+                label: mw.message('adiutor-prepend-text-on-the-page').text(),
+                description: mw.message('adiutor-prepend-text-on-the-page-description').text(),
                 value: 'prependtext',
             }, {
-                label: 'Append text to page.',
-                description: 'When this checkbox is activated, the specified content in the content pattern input will be appended to the page.',
+                label: mw.message('adiutor-append-text-on-the-page').text(),
+                description: mw.message('adiutor-append-text-on-the-page-description').text(),
                 value: 'appendtext',
             }
         ];
@@ -144,7 +144,7 @@ module.exports = defineComponent({
     data() {
         return {
             // Add properties for controlling button appearance
-            saveButtonLabel: 'Save configurations',
+            saveButtonLabel: mw.message('adiutor-save-configurations').text(),
             saveButtonAction: 'progressive',
             saveButtonClass: 'save-button',
             saveButtonWeight: 'primary',
@@ -155,7 +155,7 @@ module.exports = defineComponent({
 
         async saveConfiguration() {
             // Change the button label and disable it during the save operation
-            this.saveButtonLabel = 'Saving...';
+            this.saveButtonLabel = mw.message('adiutor-configurations-saving').text();
             this.saveButtonAction = 'default';
             this.saveButtonDisabled = true;
 
@@ -202,13 +202,13 @@ module.exports = defineComponent({
                         type: 'success'
                     });
                     // Revert the button label and enable it after a delay (2 seconds)
-                    this.saveButtonLabel = 'Save configurations';
+                    this.saveButtonLabel = mw.message('adiutor-save-configurations').text();
                     this.saveButtonAction = 'progressive';
                     this.saveButtonDisabled = false;
                 } else {
                     // Log an error message if the update was not successful
                     console.error('Error updating configuration');
-                    this.saveButtonLabel = 'Try again';
+                    this.saveButtonLabel = mw.message('adiutor-configurations-saving').text();
                     this.saveButtonAction = 'destructive';
                     this.saveButtonDisabled = false;
                 }

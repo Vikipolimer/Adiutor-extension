@@ -28,10 +28,35 @@
         }
     },
     "Hooks": {
-        "BeforePageDisplay": [
-            "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
-        ]
-    },
+		"BeforePageDisplay": "pageDisplay",
+		"GetPreferences": "preferences",
+		"GetBetaFeaturePreferences": "betaFeature",
+		"SaveUserOptions": "preferences"
+	},
+    "HookHandlers": {
+        "preferences": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PreferencesHandler",
+            "services": [
+                "PermissionManager",
+				"UserOptionsLookup",
+				"UserGroupManager"
+			]
+		},
+		"betaFeature": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\BetaFeaturePreferencesHandler",
+			"services": [
+				"MainConfig",
+				"PermissionManager"
+			]
+		},
+        "pageDisplay": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PageDisplayHandler",
+			"services": [
+                "PermissionManager",
+				"UserOptionsLookup"
+			]
+		}
+	},
     "ExtensionFunctions": [
         "MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
     ],
@@ -52,6 +77,7 @@
             "messages": [
                 "adiutor-title",
                 "adiutor-desc",
+                "adiutor-beta-feature-enabled",
                 "adiutor-create",
                 "adiutor-request",
                 "adiutor-speedy-deletion-policy",
@@ -202,7 +228,30 @@
                 "adiutor-no-section-description",
                 "adiutor-text-modification-direction",
                 "adiutor-request-page-protection-configuration",
-                "adiutor-request-page-protection-description"
+                "adiutor-request-page-protection-description",
+                "adiutor-create-speedy-deletion",
+                "adiutor-request-page-protection",
+                "adiutor-request-page-move",
+                "adiutor-proposed-deletion",
+                "adiutor-article-tagging",
+                "adiutor-request-speedy-deletion",
+                "adiutor-propose-deletion",
+                "adiutor-request-protection",
+                "adiutor-tag-article",
+                "adiutor-configurations-saving",
+                "adiutor-try-again",
+                "adiutor-csd-use-reason-value",
+                "adiutor-csd-use-reason-data",
+                "adiutor-csd-use-reason-value-description",
+                "adiutor-csd-use-reason-data-description",
+                "adiutor-csd-use-vertical-bar",
+                "adiutor-csd-use-vertical-bar-description",
+                "adiutor-csd-default",
+                "adiutor-csd-default-description",
+                "adiutor-prepend-text-on-the-page",
+                "adiutor-prepend-text-on-the-page-description",
+                "adiutor-append-text-on-the-page",
+                "adiutor-append-text-on-the-page-description"
             ],
             "styles": [
                 "./ext.Adiutor.styles/styles.less"

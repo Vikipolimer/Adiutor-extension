@@ -11,67 +11,67 @@ const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
 const deletionPropose = require('./deletionPropose.vue');
 const articleForDeletion = require('./articleForDeletion.vue');
 const portletLinks = [
-  {
-    id: 't-request-speedy-deletion',
-    label: 'Request speedy deletion',
-    action: 'Request speedy deletion',
-    key: 'rsd',
-    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-  },
-  {
-    id: 't-propose-deletion',
-    label: 'Propose deletion',
-    action: 'Propose deletion',
-    key: 'pd',
-    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-  },
-  /*
-  {
-    id: 't-article-for-deletion',
-    label: 'Article for deletion',
-    action: 'Article for deletion',
-    key: 'afd',
-    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-  },
-  */
-  {
-    id: 't-request-protection',
-    label: 'Request protection',
-    action: 'Request protection',
-    key: 'pr',
-    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-  },
-  {
-    id: 't-request-page-move',
-    label: 'Request page move',
-    action: 'Request page move',
-    key: 'rpm',
-    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-  },
-  {
-    id: 't-tag-article',
-    label: 'Tag article',
-    action: 'Tag article',
-    key: 'tag',
-    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-  },
-  /*
-  {
-    id: 't-report-user',
-    label: 'Report user',
-    action: 'Report user',
-    key: 'rep',
-    namespaces: [2, 3],
-  },*/
+	{
+		id: 't-request-speedy-deletion',
+		label: mw.msg('adiutor-request-speedy-deletion'),
+		action: mw.msg('adiutor-request-speedy-deletion'),
+		key: 'rsd',
+		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+	},
+	{
+		id: 't-propose-deletion',
+		label: mw.msg('adiutor-propose-deletion'),
+		action: mw.msg('adiutor-propose-deletion'),
+		key: 'pd',
+		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+	},
+	/*
+	{
+	  id: 't-article-for-deletion',
+	  label: 'Article for deletion',
+	  action: 'Article for deletion',
+	  key: 'afd',
+	  namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+	},
+	*/
+	{
+		id: 't-request-protection',
+		label: mw.msg('adiutor-request-protection'),
+		action: mw.msg('adiutor-request-protection'),
+		key: 'pr',
+		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+	},
+	{
+		id: 't-request-page-move',
+		label: mw.msg('adiutor-request-page-move'),
+		action: mw.msg('adiutor-request-page-move'),
+		key: 'rpm',
+		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+	},
+	{
+		id: 't-tag-article',
+		label: mw.msg('adiutor-tag-article'),
+		action: mw.msg('adiutor-tag-article'),
+		key: 'tag',
+		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+	},
+	/*
+	{
+	  id: 't-report-user',
+	  label: 'Report user',
+	  action: 'Report user',
+	  key: 'rep',
+	  namespaces: [2, 3],
+	},*/
 ];
 
 portletLinks.forEach(link => {
-  // Check if the current page is not a special page
-  if (mw.config.get('wgNamespaceNumber') >= 0) {
-    if (link.namespaces.includes(mw.config.get('wgNamespaceNumber'))) {
-      mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
-    }
-  }
+	// Check if the current page is not a special page
+	if (mw.config.get('wgNamespaceNumber') >= 0) {
+		if (link.namespaces.includes(mw.config.get('wgNamespaceNumber'))) {
+			mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
+		}
+	}
 });
 
 module.exports = {

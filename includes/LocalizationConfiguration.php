@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file contains the LocalizationConfiguration class, which defines various configuration constants
  * for the Adiutor extension in MediaWiki.
@@ -9,6 +10,7 @@
  *
  * @package MediaWiki\Extension\Adiutor
  */
+
 namespace MediaWiki\Extension\Adiutor;
 
 class LocalizationConfiguration

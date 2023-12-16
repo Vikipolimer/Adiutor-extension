@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Entry point for Adiutor extension.
  *
