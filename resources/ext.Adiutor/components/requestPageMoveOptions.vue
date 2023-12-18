@@ -1,12 +1,12 @@
 <template>
-    <cdx-message class="top-message">
+    <cdx-field class="top-message">
         <cdx-button :action="saveButtonAction" :class="saveButtonClass" :weight="saveButtonWeight"
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
         <h3 style="display: initial;">{{ $i18n('adiutor-request-page-move-configuration') }}</h3>
         <p style="margin-top: 22px;">{{ $i18n('adiutor-request-page-move-description') }}</p>
-    </cdx-message>
+    </cdx-field>
     <cdx-message type="warning" dismiss-button-label="{{ $i18n('adiutor-close') }}">
         <h3>{{ $i18n('adiutor-parameters') }}</h3>
         <p>{{ $i18n('adiutor-parameters-description') }}</p>
@@ -16,8 +16,16 @@
             <li><strong>$3</strong>: {{ $i18n('adiutor-parameters-rationale') }}</li>
         </ul>
     </cdx-message>
-    <cdx-message>
-        <strong>{{ $i18n('adiutor-settings') }}</strong>
+    <cdx-field>
+        <strong>{{ $i18n('adiutor-settings-label') }}</strong>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="moduleEnabled">
+                <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-module-enabled-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-label input-id="noticeBoardTitle">{{ $i18n('adiutor-noticeboard') }}</cdx-label>
             <cdx-text-input v-model="noticeBoardTitle" id="noticeBoardTitle"
@@ -74,15 +82,15 @@
                 <template #description> {{ direction.description }} </template>
             </cdx-radio>
         </cdx-field>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <cdx-field>
             <strong>{{ $i18n('adiutor-summaries') }}</strong>
             <cdx-label input-id="apiPostSummary">{{ $i18n('adiutor-api-post-summary') }}</cdx-label>
             <cdx-text-input v-model="apiPostSummary" id="apiPostSummary"
                 aria-label="{{ $i18n('adiutor-api-post-summary') }}"></cdx-text-input>
         </cdx-field>
-    </cdx-message>
+    </cdx-field>
 </template>
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
@@ -117,6 +125,7 @@ module.exports = defineComponent({
         const contentPattern = ref(rpmConfiguration.contentPattern);
         const apiPostSummary = ref(rpmConfiguration.apiPostSummary);
         const textModificationDirection = ref(rpmConfiguration.textModificationDirection);
+        const moduleEnabled = ref(rpmConfiguration.moduleEnabled);
         const textModificationDirectionRadios = [
             {
                 label: mw.message('adiutor-prepend-text-on-the-page').text(),
@@ -139,6 +148,7 @@ module.exports = defineComponent({
             textModificationDirection,
             apiPostSummary,
             textModificationDirectionRadios,
+            moduleEnabled
         };
     },
     data() {
@@ -170,7 +180,8 @@ module.exports = defineComponent({
                     "sectionId": this.sectionId,
                     "textModificationDirection": this.textModificationDirection,
                     "contentPattern": this.contentPattern,
-                    "apiPostSummary": this.apiPostSummary
+                    "apiPostSummary": this.apiPostSummary,
+                    "moduleEnabled": this.moduleEnabled
                 }
             };
 

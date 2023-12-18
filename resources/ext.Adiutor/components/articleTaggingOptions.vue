@@ -1,14 +1,22 @@
 <template>
-    <cdx-message class="top-message">
+    <cdx-field class="top-message">
         <cdx-button :action="saveButtonAction" :class="saveButtonClass" :weight="saveButtonWeight"
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
         <h3 style="display: initial;">{{ $i18n('adiutor-article-tagging-configuration-title') }}</h3>
         <p style="margin-top: 22px;">{{ $i18n('adiutor-article-tagging-description') }}</p>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <strong>{{ $i18n('adiutor-settings-label') }}</strong>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="moduleEnabled">
+                <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-module-enabled-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="useMultipleIssuesTemplate">
                 <cdx-label input-id="useMultipleIssuesTemplate">{{ $i18n('adiutor-use-multiple-issues-template-label') }}</cdx-label>
@@ -35,15 +43,15 @@
                 {{ $i18n('adiutor-uncategorized-template-help-text') }}
             </template>
         </cdx-field>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <cdx-field>
             <strong> {{ $i18n('adiutor-summaries-label') }}</strong>
             <cdx-label input-id="apiPostSummary">{{ $i18n('adiutor-api-post-summary-label') }}</cdx-label>
             <cdx-text-input v-model="apiPostSummary" id="apiPostSummary"
                 aria-label="API Post Summary for Talk Page"></cdx-text-input>
         </cdx-field>
-    </cdx-message>
+    </cdx-field>
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
@@ -150,12 +158,14 @@ module.exports = defineComponent({
         const multipleIssuesTemplate = ref(tagConfiguration.multipleIssuesTemplate);
         const uncategorizedTemplate = ref(tagConfiguration.uncategorizedTemplate);
         const apiPostSummary = ref(tagConfiguration.apiPostSummary);
+        const moduleEnabled = ref(tagConfiguration.moduleEnabled);
         return {
             tagList,
             useMultipleIssuesTemplate,
             multipleIssuesTemplate,
             uncategorizedTemplate,
             apiPostSummary,
+            moduleEnabled,
         };
     },
     data() {
@@ -248,6 +258,7 @@ module.exports = defineComponent({
                     "multipleIssuesTemplate": this.multipleIssuesTemplate,
                     "uncategorizedTemplate": this.uncategorizedTemplate,
                     "apiPostSummary": this.apiPostSummary,
+                    "moduleEnabled": this.moduleEnabled,
                 }
             };
 

@@ -183,5 +183,7 @@
     "adiutor-prepend-text-on-the-page": "Label for the option to prepend text on the page optionally.",
     "adiutor-prepend-text-on-the-page-description": "Description of the option to prepend text on the page optionally.",
     "adiutor-append-text-on-the-page": "Label for the option to append text on the page optionally.",
-    "adiutor-append-text-on-the-page-description": "Description of the option to append text on the page optionally."
+    "adiutor-append-text-on-the-page-description": "Description of the option to append text on the page optionally.",
+    "adiutor-module-enabled": "Label for the option to enable a module.",
+    "adiutor-module-enabled-description": "Description of the option to enable a module."
 }

@@ -16,6 +16,7 @@ namespace MediaWiki\Extension\Adiutor;
 class LocalizationConfiguration
 {
     public const DELETION_PROPOSE_CONFIGURATION = [
+        'moduleEnabled' => false,
         'standardProposeTemplate' => '{{subst:Proposed deletion|concern=$2}}',
         'livingPersonProposeTemplate' => '{{Prod blp/dated|concern=$2|user=$6|timestamp=$3 $4 $5|help=off}}',
         'apiPostSummary' => 'Proposed deletion of the page per [[WP:PROD]]',
@@ -25,6 +26,7 @@ class LocalizationConfiguration
     ];
 
     public const PAGE_PROTECTION_CONFIGURATION = [
+        'moduleEnabled' => false,
         'protectionDurations' => [
             [
                 'value' => 'temporary',
@@ -60,6 +62,7 @@ class LocalizationConfiguration
     ];
 
     public const SPEEDY_DELETION_REQUEST_CONFIGURATION = [
+        'moduleEnabled' => false,
         'speedyDeletionReasons' => [
             [
                 'name' => 'Articles',
@@ -243,6 +246,7 @@ class LocalizationConfiguration
     ];
 
     public const PAGE_MOVE_CONFIGURATION = [
+        'moduleEnabled' => false,
         'noticeBoardTitle' => 'Wikipedia:Page move requests',
         'addNewSection' => false,
         'sectionTitle' => 'Page move request for [[$1]]',
@@ -254,6 +258,7 @@ class LocalizationConfiguration
     ];
 
     public const REVISION_DELETION_CONFIGURATION = [
+        'moduleEnabled' => false,
         'noticeBoardTitle' => 'Wikipedia:Revision deletion/Noticeboard',
         'addNewSection' => false,
         'sectionTitle' => 'Revision deletion request for [[$1]]',
@@ -265,6 +270,7 @@ class LocalizationConfiguration
     ];
 
     public const ARTICLE_TAGGING_CONFIGURATION = [
+        'moduleEnabled' => false,
         'tagList' => [
             [
                 'label' => 'Cleanup and maintenance',

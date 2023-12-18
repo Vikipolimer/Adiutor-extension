@@ -183,5 +183,7 @@
     "adiutor-prepend-text-on-the-page": "Prepend text on the page",
     "adiutor-prepend-text-on-the-page-description": "When this checkbox is activated, the specified content in the content pattern input will be prepended on the page.",
     "adiutor-append-text-on-the-page": "Append text to page.",
-    "adiutor-append-text-on-the-page-description": "When this checkbox is activated, the specified content in the content pattern input will be appended to the page."
+    "adiutor-append-text-on-the-page-description": "When this checkbox is activated, the specified content in the content pattern input will be appended to the page.",
+    "adiutor-module-enabled": "Module enabled",
+    "adiutor-module-enabled-description": "When this swhiched on, the module will be enabled."
 }

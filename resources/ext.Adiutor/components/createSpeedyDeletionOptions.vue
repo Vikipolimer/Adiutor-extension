@@ -1,12 +1,12 @@
 <template>
-    <cdx-message class="top-message">
+    <cdx-field class="top-message">
         <cdx-button :action="saveButtonAction" :class="saveButtonClass" :weight="saveButtonWeight"
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
         <h3 style="display: initial;">{{ $i18n('adiutor-create-speedy-deletion-configuration-title') }}</h3>
         <p style="margin-top: 22px;">{{ $i18n('adiutor-create-speedy-deletion-configuration-description') }}</p>
-    </cdx-message>
+    </cdx-field>
     <cdx-message type="warning" dismiss-button-label="Close">
         <h3>{{ $i18n('adiutor-parameters') }}</h3>
         <p>{{ $i18n('adiutor-parameters-description') }}</p>
@@ -16,8 +16,16 @@
             <li><strong>$3</strong>: {{ $i18n('adiutor-parameters-reason-value') }}</li>
         </ul>
     </cdx-message>
-    <cdx-message>
-        <strong>{{ $i18n('adiutor-settings') }}</strong>
+    <cdx-field>
+        <strong>{{ $i18n('adiutor-settings-label') }}</strong>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="moduleEnabled">
+                <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-module-enabled-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
         <cdx-label input-id="speedyDeletionPolicyLink">{{ $i18n('adiutor-speedy-deletion-policy-link') }}</cdx-label>
         <cdx-text-input v-model="speedyDeletionPolicyLink" id="speedyDeletionPolicyLink"
             aria-label="{{ $i18n('adiutor-speedy-deletion-policy-link') }}"></cdx-text-input>
@@ -31,8 +39,8 @@
         <cdx-label input-id="copyVioReasonValue">{{ $i18n('adiutor-copy-vio-reason-value') }}</cdx-label>
         <cdx-text-input v-model="copyVioReasonValue" id="copyVioReasonValue"
             aria-label="{{ $i18n('adiutor-copy-vio-reason-value') }}"></cdx-text-input>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <cdx-field>
             <strong>{{ $i18n('adiutor-in-page-request-templating-configuration') }}</strong>
             <cdx-label input-id="csdTemplateStartSingleReason">{{ $i18n('adiutor-single-reason-template') }}</cdx-label>
@@ -77,8 +85,8 @@
                 </template>
             </cdx-radio>
         </cdx-field>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <cdx-field>
             <strong>{{ $i18n('adiutor-summaries') }}</strong>
             <cdx-label input-id="singleReasonSummary">{{ $i18n('adiutor-single-reason-summary') }}</cdx-label>
@@ -95,7 +103,7 @@
             <cdx-text-input v-model="apiPostSummaryforLog" id="apiPostSummaryforLog"
                 aria-label="{{ $i18n('adiutor-api-post-summary-for-log') }}"></cdx-text-input>
         </cdx-field>
-    </cdx-message>
+    </cdx-field>
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
@@ -145,7 +153,7 @@
 </template>
 <script>
 const { defineComponent, ref } = require('vue');
-const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
+const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxToggleSwitch, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
 const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
 module.exports = defineComponent({
     name: '',
@@ -158,7 +166,7 @@ module.exports = defineComponent({
         CdxMessage,
         CdxCheckbox,
         CdxField,
-        CdxRadio, CdxTextArea, CdxButton
+        CdxRadio, CdxTextArea, CdxButton,CdxToggleSwitch
     },
     props: {
         framed: {
@@ -179,6 +187,7 @@ module.exports = defineComponent({
         const multipleReasonSummary = ref(csdConfiguration.multipleReasonSummary);
         const copyVioReasonValue = ref(csdConfiguration.copyVioReasonValue);
         const postfixReasonUsage = ref(csdConfiguration.postfixReasonUsage);
+        const moduleEnabled = ref(csdConfiguration.moduleEnabled);
         const postfixReasonUsageRadios = [
             {
                 label: mw.message('adiutor-csd-use-reason-value').text(),
@@ -227,6 +236,7 @@ module.exports = defineComponent({
             multipleReasonSummary,
             copyVioReasonValue,
             postfixReasonUsage,
+            moduleEnabled,
             postfixReasonUsageRadios,
             multipleReasonSeparation,
             multipleReasonSeparationRadios
@@ -315,6 +325,7 @@ module.exports = defineComponent({
                     "singleReasonSummary": this.singleReasonSummary,
                     "multipleReasonSummary": this.multipleReasonSummary,
                     "copyVioReasonValue": this.copyVioReasonValue,
+                    "moduleEnabled": this.moduleEnabled,
                 }
             };
 

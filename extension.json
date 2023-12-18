@@ -251,7 +251,9 @@
                 "adiutor-prepend-text-on-the-page",
                 "adiutor-prepend-text-on-the-page-description",
                 "adiutor-append-text-on-the-page",
-                "adiutor-append-text-on-the-page-description"
+                "adiutor-append-text-on-the-page-description",
+                "adiutor-module-enabled",
+                "adiutor-module-enabled-description"
             ],
             "styles": [
                 "./ext.Adiutor.styles/styles.less"

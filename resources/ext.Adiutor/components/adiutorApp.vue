@@ -10,61 +10,58 @@ const articleTagging = require('./articleTagging.vue');
 const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
 const deletionPropose = require('./deletionPropose.vue');
 const articleForDeletion = require('./articleForDeletion.vue');
-const portletLinks = [
-	{
+const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
+const rppConfiguration = mw.config.get('AdiutorRequestPageProtection');
+const rpmConfiguration = mw.config.get('AdiutorRequestPageMove');
+const dprConfiguration = mw.config.get('AdiutorDeletionPropose');
+const tagConfiguration = mw.config.get('AdiutorArticleTagging');
+
+let portletLinks = [];
+if (csdConfiguration.moduleEnabled) {
+	portletLinks.push({
 		id: 't-request-speedy-deletion',
 		label: mw.msg('adiutor-request-speedy-deletion'),
 		action: mw.msg('adiutor-request-speedy-deletion'),
 		key: 'rsd',
 		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	},
-	{
+	});
+}
+if (dprConfiguration.moduleEnabled) {
+	portletLinks.push({
 		id: 't-propose-deletion',
 		label: mw.msg('adiutor-propose-deletion'),
 		action: mw.msg('adiutor-propose-deletion'),
 		key: 'pd',
 		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	},
-	/*
-	{
-	  id: 't-article-for-deletion',
-	  label: 'Article for deletion',
-	  action: 'Article for deletion',
-	  key: 'afd',
-	  namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	},
-	*/
-	{
+	});
+}
+if (rppConfiguration.moduleEnabled) {
+	portletLinks.push({
 		id: 't-request-protection',
 		label: mw.msg('adiutor-request-protection'),
 		action: mw.msg('adiutor-request-protection'),
 		key: 'pr',
 		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	},
-	{
+	});
+}
+if (rpmConfiguration.moduleEnabled) {
+	portletLinks.push({
 		id: 't-request-page-move',
 		label: mw.msg('adiutor-request-page-move'),
 		action: mw.msg('adiutor-request-page-move'),
 		key: 'rpm',
 		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	},
-	{
+	});
+}
+if (tagConfiguration.moduleEnabled) {
+	portletLinks.push({
 		id: 't-tag-article',
 		label: mw.msg('adiutor-tag-article'),
 		action: mw.msg('adiutor-tag-article'),
 		key: 'tag',
 		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	},
-	/*
-	{
-	  id: 't-report-user',
-	  label: 'Report user',
-	  action: 'Report user',
-	  key: 'rep',
-	  namespaces: [2, 3],
-	},*/
-];
-
+	});
+}
 portletLinks.forEach(link => {
 	// Check if the current page is not a special page
 	if (mw.config.get('wgNamespaceNumber') >= 0) {

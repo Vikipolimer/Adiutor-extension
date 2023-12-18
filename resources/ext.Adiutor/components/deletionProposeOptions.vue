@@ -1,12 +1,12 @@
 <template>
-    <cdx-message class="top-message">
+    <cdx-field class="top-message">
         <cdx-button :action="saveButtonAction" :class="saveButtonClass" :weight="saveButtonWeight"
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
         <h3 style="display: initial;">{{ $i18n('adiutor-proposed-deletion-configuration') }}</h3>
         <p style="margin-top: 22px;">{{ $i18n('adiutor-proposed-deletion-description') }}</p>
-    </cdx-message>
+    </cdx-field>
     <cdx-message type="warning" dismiss-button-label="{{ $i18n('adiutor-close') }}">
         <h3>{{ $i18n('adiutor-parameters') }}</h3>
         <p>{{ $i18n('adiutor-parameters-description') }}</p>
@@ -19,13 +19,21 @@
             <li><strong>$6</strong>: {{ $i18n('adiutor-parameters-requester') }}</li>
         </ul>
     </cdx-message>
-    <cdx-message>
-        <strong>{{ $i18n('adiutor-settings') }}</strong>
+    <cdx-field>
+        <strong>{{ $i18n('adiutor-settings-label') }}</strong>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="moduleEnabled">
+                <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-module-enabled-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
         <cdx-label input-id="prodNotificationTemplate">{{ $i18n('adiutor-prod-notification-template') }}</cdx-label>
         <cdx-text-input v-model="prodNotificationTemplate" id="prodNotificationTemplate"
             aria-label="{{ $i18n('adiutor-prod-notification-template') }}"></cdx-text-input>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <cdx-field>
             <strong>{{ $i18n('adiutor-in-page-request-templating-configuration') }}</strong>
             <cdx-label input-id="standardProposeTemplate">{{ $i18n('adiutor-proposed-deletion-template') }}</cdx-label>
@@ -36,15 +44,16 @@
             </template>
         </cdx-field>
         <cdx-field>
-            <cdx-label input-id="livingPersonProposeTemplate">{{ $i18n('adiutor-proposed-deletion-blps-template') }}</cdx-label>
+            <cdx-label input-id="livingPersonProposeTemplate">{{ $i18n('adiutor-proposed-deletion-blps-template')
+            }}</cdx-label>
             <cdx-text-input v-model="livingPersonProposeTemplate" id="livingPersonProposeTemplate"
                 aria-label="{{ $i18n('adiutor-proposed-deletion-blps-template') }}"></cdx-text-input>
             <template #help-text>
                 {{ $i18n('adiutor-proposed-deletion-blps-template-description') }}
             </template>
         </cdx-field>
-    </cdx-message>
-    <cdx-message>
+    </cdx-field>
+    <cdx-field>
         <cdx-field>
             <strong>{{ $i18n('adiutor-summaries') }}</strong>
             <cdx-label input-id="apiPostSummaryforLog">{{ $i18n('adiutor-api-post-summary-for-log') }}</cdx-label>
@@ -57,11 +66,11 @@
             <cdx-text-input v-model="apiPostSummaryforCreator" id="apiPostSummaryforCreator"
                 aria-label="{{ $i18n('adiutor-api-post-summary-for-creator') }}"></cdx-text-input>
         </cdx-field>
-    </cdx-message>
+    </cdx-field>
 </template>
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
-const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
+const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxToggleSwitch, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
 const dprConfiguration = mw.config.get('AdiutorDeletionPropose');
 module.exports = defineComponent({
     name: '',
@@ -71,6 +80,7 @@ module.exports = defineComponent({
         CdxTextInput,
         CdxTabs,
         CdxTab,
+        CdxToggleSwitch,
         CdxMessage,
         CdxCheckbox,
         CdxField,
@@ -89,6 +99,7 @@ module.exports = defineComponent({
         const apiPostSummaryforCreator = ref(dprConfiguration.apiPostSummaryforCreator);
         const prodNotificationTemplate = ref(dprConfiguration.prodNotificationTemplate);
         const apiPostSummaryforLog = ref(dprConfiguration.apiPostSummaryforLog);
+        const moduleEnabled = ref(dprConfiguration.moduleEnabled);
 
         return {
             standardProposeTemplate,
@@ -97,7 +108,7 @@ module.exports = defineComponent({
             apiPostSummaryforCreator,
             prodNotificationTemplate,
             apiPostSummaryforLog,
-
+            moduleEnabled
         };
     },
     data() {
@@ -127,6 +138,7 @@ module.exports = defineComponent({
                     "apiPostSummaryforCreator": this.apiPostSummaryforCreator,
                     "prodNotificationTemplate": this.prodNotificationTemplate,
                     "apiPostSummaryforLog": this.apiPostSummaryforLog,
+                    "moduleEnabled": this.moduleEnabled,
                 }
             };
 
