@@ -18,10 +18,14 @@ class AdiutorSettings extends \SpecialPage
         parent::__construct('AdiutorSettings');
     }
 
+    /**
+     * Returns the description of the AdiutorSettings object.
+     *
+     * @return string The description of the AdiutorSettings object.
+     */
     public function getDescription()
     {
-        // return $this->msg( 'adiutor-settings' );
-        return 'Adiutor settings';
+        return $this->msg('adiutor-settings')->text();
     }
 
     /**
@@ -34,7 +38,6 @@ class AdiutorSettings extends \SpecialPage
         if (!$user->isAllowed('editinterface')) {
             throw new \PermissionsError('editinterface');
         }
-
         $out = $this->getOutput();
         $out->setPageTitle($this->msg('adiutor-settings'));
         $out->addHtml('<div id="adiutor-settings"></div>');
