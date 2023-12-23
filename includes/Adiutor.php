@@ -15,6 +15,7 @@ use MediaWiki\Extension\Adiutor\LocalizationConfiguration;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\MediaWikiServices;
+use ChangeTags;
 use TextContent;
 use User;
 
@@ -32,6 +33,9 @@ class Adiutor
      */
     public static function onExtensionLoad()
     {
+        $tagName = 'Adiutor';
+        ChangeTags::defineTag($tagName);
+
         $configurationPages = [
             'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::PAGE_PROTECTION_CONFIGURATION,
             'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::SPEEDY_DELETION_REQUEST_CONFIGURATION,
